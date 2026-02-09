@@ -46,7 +46,7 @@ const SearchResults = () => {
       <div className="page-header">
         <div>
           <h1>Search</h1>
-          <p>{query ? `Results for “${query}”` : 'Type a query to explore.'}</p>
+          <p>{query ? `Results for "${query}"` : 'Type a query to explore.'}</p>
         </div>
         {query ? <span className="stat-pill">Live results</span> : null}
       </div>

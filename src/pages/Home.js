@@ -9,6 +9,7 @@ const Home = () => {
   const [params] = useSearchParams();
   const categoryId = params.get('category') || 'trending';
   const category = categories.find((item) => item.id === categoryId) || categories[0];
+  const categoryQuery = category.query;
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState('');
@@ -19,8 +20,8 @@ const Home = () => {
       setStatus('loading');
       setError('');
       try {
-        const data = category.query
-          ? await searchVideos({ query: category.query })
+        const data = categoryQuery
+          ? await searchVideos({ query: categoryQuery })
           : await fetchMostPopular();
         if (active) {
           setItems(data);
@@ -37,7 +38,7 @@ const Home = () => {
     return () => {
       active = false;
     };
-  }, [category.id, category.query]);
+  }, [categoryQuery]);
 
   return (
     <section>

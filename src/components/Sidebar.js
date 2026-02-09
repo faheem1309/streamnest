@@ -20,7 +20,7 @@ const Sidebar = () => {
               to={`/?category=${category.id}`}
             >
               <span>{category.label}</span>
-              <span>→</span>
+              <span>&gt;</span>
             </Link>
           );
         })}
