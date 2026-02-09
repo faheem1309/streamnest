@@ -13,7 +13,6 @@ const STOPWORDS = new Set([
   'official',
   'video',
   'videos',
-  'latest',
   'highlights',
   'stream',
   'streams',

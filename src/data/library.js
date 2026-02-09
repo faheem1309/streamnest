@@ -257,6 +257,46 @@ const channelList = [
     subscriberCount: '2600000',
     videoCount: '80',
   },
+  {
+    id: 'channel-pinkfong',
+    title: "Pinkfong Baby Shark - Kids' Songs & Stories",
+    description: 'Sing-along songs and stories for kids.',
+    thumbId: 'XqZsoesa55w',
+    subscriberCount: '70000000',
+    videoCount: '3200',
+  },
+  {
+    id: 'channel-cocomelon',
+    title: 'CoComelon - Nursery Rhymes',
+    description: 'Nursery rhymes and kids songs for families.',
+    thumbId: 'wV3N-wCRL2k',
+    subscriberCount: '170000000',
+    videoCount: '1500',
+  },
+  {
+    id: 'channel-maher-zain',
+    title: 'Maher Zain',
+    description: 'Official channel for Maher Zain.',
+    thumbId: 'KfXIF2Mm2Kc',
+    subscriberCount: '6500000',
+    videoCount: '180',
+  },
+  {
+    id: 'channel-flipperachi',
+    title: 'Flipperachi',
+    description: 'Khaleeji hip-hop and global collaborations.',
+    thumbId: '1XOJFuKHCck',
+    subscriberCount: '120000',
+    videoCount: '120',
+  },
+  {
+    id: 'channel-shatadru-kabir',
+    title: 'Shatadru Kabir',
+    description: 'Music from the film Mark and more.',
+    thumbId: 'iPNLfS8o5g0',
+    subscriberCount: '90000',
+    videoCount: '60',
+  },
 ];
 
 export const channelsById = channelList.reduce((acc, channel) => {
@@ -786,6 +826,90 @@ export const videos = [
     statistics: { viewCount: '420000000', likeCount: '5500000' },
     tags: ['global', 'afrobeats', 'music'],
   },
+  {
+    id: 'XqZsoesa55w',
+    snippet: {
+      title: 'Baby Shark Dance | #babyshark Most Viewed Video | Animal Songs | PINKFONG Songs for Children',
+      description: 'The viral kids song loved around the world.',
+      channelId: 'channel-pinkfong',
+      channelTitle: "Pinkfong Baby Shark - Kids' Songs & Stories",
+      publishedAt: '2016-06-17T00:00:00Z',
+      thumbnails: makeThumbs('XqZsoesa55w'),
+    },
+    contentDetails: { duration: 'PT2M17S' },
+    statistics: { viewCount: '16000000000', likeCount: '45000000' },
+    tags: ['kids', 'nursery', 'songs', 'baby', 'education'],
+  },
+  {
+    id: 'wV3N-wCRL2k',
+    snippet: {
+      title: 'Wheels on the Bus + More Nursery Rhymes & Kids Songs - CoComelon',
+      description: 'A compilation packed with classic nursery rhymes.',
+      channelId: 'channel-cocomelon',
+      channelTitle: 'CoComelon - Nursery Rhymes',
+      publishedAt: '2018-06-28T00:00:00Z',
+      thumbnails: makeThumbs('wV3N-wCRL2k'),
+    },
+    contentDetails: { duration: 'PT32M56S' },
+    statistics: { viewCount: '1800000000', likeCount: '5200000' },
+    tags: ['kids', 'nursery', 'songs', 'family', 'education'],
+  },
+  {
+    id: 'KfXIF2Mm2Kc',
+    snippet: {
+      title: 'Maher Zain - Insha Allah (Official Music Video)',
+      description: 'A hopeful nasheed about perseverance and faith.',
+      channelId: 'channel-maher-zain',
+      channelTitle: 'Maher Zain',
+      publishedAt: '2009-10-01T00:00:00Z',
+      thumbnails: makeThumbs('KfXIF2Mm2Kc'),
+    },
+    contentDetails: { duration: 'PT4M54S' },
+    statistics: { viewCount: '130000000', likeCount: '2000000' },
+    tags: ['islamic', 'nasheed', 'spiritual', 'faith'],
+  },
+  {
+    id: 'Vqfy4ScRXFQ',
+    snippet: {
+      title: 'Maher Zain - Ya Nabi Salam Alayka (Official Video)',
+      description: 'A beloved devotional song honoring the Prophet.',
+      channelId: 'channel-maher-zain',
+      channelTitle: 'Maher Zain',
+      publishedAt: '2011-09-01T00:00:00Z',
+      thumbnails: makeThumbs('Vqfy4ScRXFQ'),
+    },
+    contentDetails: { duration: 'PT5M00S' },
+    statistics: { viewCount: '90000000', likeCount: '1500000' },
+    tags: ['islamic', 'nasheed', 'spiritual', 'arabic'],
+  },
+  {
+    id: '1XOJFuKHCck',
+    snippet: {
+      title: 'FA9LA (Rehman Dakait Entry)',
+      description: 'Flipperachi delivers a viral Khaleeji hip-hop anthem.',
+      channelId: 'channel-flipperachi',
+      channelTitle: 'Flipperachi',
+      publishedAt: '2024-05-29T00:00:00Z',
+      thumbnails: makeThumbs('1XOJFuKHCck'),
+    },
+    contentDetails: { duration: 'PT2M58S' },
+    statistics: { viewCount: '12000000', likeCount: '520000' },
+    tags: ['global', 'arabic', 'hiphop', 'viral', 'latest'],
+  },
+  {
+    id: 'iPNLfS8o5g0',
+    snippet: {
+      title: 'Mast Malaika (Hindi)',
+      description: 'High-energy party track from the film Mark.',
+      channelId: 'channel-shatadru-kabir',
+      channelTitle: 'Shatadru Kabir',
+      publishedAt: '2025-12-15T00:00:00Z',
+      thumbnails: makeThumbs('iPNLfS8o5g0'),
+    },
+    contentDetails: { duration: 'PT3M28S' },
+    statistics: { viewCount: '2200000', likeCount: '98000' },
+    tags: ['india', 'hindi', 'bollywood', 'party', 'latest'],
+  },
 ];
 
 export const commentsByVideoId = {
@@ -988,6 +1112,84 @@ export const commentsByVideoId = {
           snippet: {
             authorDisplayName: 'Tomi A.',
             textDisplay: 'This groove is addictive.',
+          },
+        },
+      },
+    },
+  ],
+  XqZsoesa55w: [
+    {
+      id: 'shark-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Leah J.',
+            textDisplay: 'The ultimate kids anthem.',
+          },
+        },
+      },
+    },
+  ],
+  'wV3N-wCRL2k': [
+    {
+      id: 'bus-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Rahul D.',
+            textDisplay: 'Perfect for long drives with kids.',
+          },
+        },
+      },
+    },
+  ],
+  KfXIF2Mm2Kc: [
+    {
+      id: 'isha-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Amina H.',
+            textDisplay: 'Soothing and uplifting.',
+          },
+        },
+      },
+    },
+  ],
+  Vqfy4ScRXFQ: [
+    {
+      id: 'nabi-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Ibrahim S.',
+            textDisplay: 'Beautiful and heartfelt.',
+          },
+        },
+      },
+    },
+  ],
+  '1XOJFuKHCck': [
+    {
+      id: 'fa9la-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Neel P.',
+            textDisplay: 'That beat hits every time.',
+          },
+        },
+      },
+    },
+  ],
+  iPNLfS8o5g0: [
+    {
+      id: 'mala-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Sana R.',
+            textDisplay: 'On loop since it dropped.',
           },
         },
       },
