@@ -1,7 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
+india@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Unbounded:wght@400;600;700;800&display=swap');
 
 :root {
   color-scheme: dark;
+  --bg: #0b0613;
+  --text: #fdf7ff;
+  --muted: #c9c2d8;
+  --accent-1: #ff4d6d;
+  --accent-2: #ffd166;
+  --accent-3: #4cc9f0;
+  --accent-4: #3ddc97;
+  --font-display: 'Unbounded', 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', 'Work Sans', sans-serif;
 }
 
 * {
@@ -10,11 +19,12 @@
 
 body {
   margin: 0;
-  font-family: 'Work Sans', sans-serif;
-  background: #0c0b10;
-  color: #f6f3ff;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 a {
@@ -25,4 +35,13 @@ a {
 button,
 input {
   font-family: inherit;
+}
+
+img {
+  display: block;
+}
+
+::selection {
+  background: rgba(255, 209, 102, 0.35);
+  color: #1a0f1e;
 }

@@ -1,6 +1,8 @@
 export const categories = [
   { id: 'trending', label: 'Trending', query: null },
   { id: 'music', label: 'Music', query: 'latest music videos' },
+  { id: 'india', label: 'India', query: 'india music' },
+  { id: 'global', label: 'Global', query: 'global hits' },
   { id: 'live', label: 'Live', query: 'live streams' },
   { id: 'gaming', label: 'Gaming', query: 'gaming highlights' },
   { id: 'news', label: 'News', query: 'breaking news' },

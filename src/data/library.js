@@ -177,6 +177,86 @@ const channelList = [
     subscriberCount: '320000',
     videoCount: '12',
   },
+  {
+    id: 'channel-sony-music-india',
+    title: 'Sony Music India',
+    description: 'Official Sony Music India channel.',
+    thumbId: 'BddP6PYo2gs',
+    subscriberCount: '62000000',
+    videoCount: '3900',
+  },
+  {
+    id: 'channel-lahari-music',
+    title: 'Lahari Music',
+    description: 'Lahari Music official channel.',
+    thumbId: 'OsU0CGZoV8E',
+    subscriberCount: '9000000',
+    videoCount: '12000',
+  },
+  {
+    id: 'channel-tseries',
+    title: 'T-Series',
+    description: 'Official T-Series channel.',
+    thumbId: 'BBAyRBTfsOU',
+    subscriberCount: '260000000',
+    videoCount: '22000',
+  },
+  {
+    id: 'channel-guru-randhawa',
+    title: 'Guru Randhawa',
+    description: 'Official channel for Guru Randhawa.',
+    thumbId: 'dZ0fwJojhrs',
+    subscriberCount: '12000000',
+    videoCount: '220',
+  },
+  {
+    id: 'channel-zack-knight',
+    title: 'Zack Knight',
+    description: 'Official channel for Zack Knight.',
+    thumbId: 'yIIGQB6EMAM',
+    subscriberCount: '5800000',
+    videoCount: '150',
+  },
+  {
+    id: 'channel-coke-studio',
+    title: 'Coke Studio',
+    description: 'Coke Studio Pakistan.',
+    thumbId: '5Eqb_-j3FDA',
+    subscriberCount: '13000000',
+    videoCount: '600',
+  },
+  {
+    id: 'channel-blackpink',
+    title: 'BLACKPINK',
+    description: 'Official BLACKPINK channel.',
+    thumbId: 'IHNzOHi8sJs',
+    subscriberCount: '95000000',
+    videoCount: '450',
+  },
+  {
+    id: 'channel-bts',
+    title: 'BTS',
+    description: 'Official BTS channel.',
+    thumbId: 'gdZLi9oWNZg',
+    subscriberCount: '80000000',
+    videoCount: '400',
+  },
+  {
+    id: 'channel-rema',
+    title: 'Rema',
+    description: 'Official channel for Rema.',
+    thumbId: 'CQLsdm1ZYAw',
+    subscriberCount: '3000000',
+    videoCount: '110',
+  },
+  {
+    id: 'channel-ckay',
+    title: 'CKay',
+    description: 'Official channel for CKay.',
+    thumbId: 'D-YDEyuDxWU',
+    subscriberCount: '2600000',
+    videoCount: '80',
+  },
 ];
 
 export const channelsById = channelList.reduce((acc, channel) => {
@@ -538,6 +618,174 @@ export const videos = [
     statistics: { viewCount: '230000000', likeCount: '2100000' },
     tags: ['classic', 'animation', 'music'],
   },
+  {
+    id: 'BddP6PYo2gs',
+    snippet: {
+      title: 'Kesariya (From "Brahmastra")',
+      description: 'Arijit Singh and Pritam deliver a modern Bollywood classic.',
+      channelId: 'channel-sony-music-india',
+      channelTitle: 'Sony Music India',
+      publishedAt: '2022-07-17T00:00:00Z',
+      thumbnails: makeThumbs('BddP6PYo2gs'),
+    },
+    contentDetails: { duration: 'PT4M29S' },
+    statistics: { viewCount: '410000000', likeCount: '5200000' },
+    tags: ['india', 'bollywood', 'hindi', 'music', 'romance'],
+  },
+  {
+    id: 'OsU0CGZoV8E',
+    snippet: {
+      title: 'Naatu Naatu (Full Video Song) | RRR',
+      description: 'Explosive Telugu dance anthem from RRR.',
+      channelId: 'channel-lahari-music',
+      channelTitle: 'Lahari Music',
+      publishedAt: '2022-04-11T00:00:00Z',
+      thumbnails: makeThumbs('OsU0CGZoV8E'),
+    },
+    contentDetails: { duration: 'PT3M36S' },
+    statistics: { viewCount: '200000000', likeCount: '4300000' },
+    tags: ['india', 'telugu', 'music', 'dance', 'bollywood'],
+  },
+  {
+    id: 'BBAyRBTfsOU',
+    snippet: {
+      title: 'Dhvani Bhanushali - Vaaste',
+      description: 'A romantic Hindi hit from T-Series.',
+      channelId: 'channel-tseries',
+      channelTitle: 'T-Series',
+      publishedAt: '2019-04-06T00:00:00Z',
+      thumbnails: makeThumbs('BBAyRBTfsOU'),
+    },
+    contentDetails: { duration: 'PT4M06S' },
+    statistics: { viewCount: '1700000000', likeCount: '12000000' },
+    tags: ['india', 'hindi', 'music', 'romance', 'bollywood'],
+  },
+  {
+    id: 'dZ0fwJojhrs',
+    snippet: {
+      title: 'Guru Randhawa - Lahore (Official Video)',
+      description: 'Punjabi pop anthem with bold production.',
+      channelId: 'channel-guru-randhawa',
+      channelTitle: 'Guru Randhawa',
+      publishedAt: '2017-12-10T00:00:00Z',
+      thumbnails: makeThumbs('dZ0fwJojhrs'),
+    },
+    contentDetails: { duration: 'PT3M52S' },
+    statistics: { viewCount: '1100000000', likeCount: '8000000' },
+    tags: ['india', 'punjabi', 'music', 'dance'],
+  },
+  {
+    id: 'n2u81Ujc93g',
+    snippet: {
+      title: 'Dilbar | Satyameva Jayate',
+      description: 'High-energy Bollywood dance track.',
+      channelId: 'channel-tseries',
+      channelTitle: 'T-Series',
+      publishedAt: '2018-07-24T00:00:00Z',
+      thumbnails: makeThumbs('n2u81Ujc93g'),
+    },
+    contentDetails: { duration: 'PT2M14S' },
+    statistics: { viewCount: '850000000', likeCount: '6000000' },
+    tags: ['india', 'bollywood', 'hindi', 'music', 'dance'],
+  },
+  {
+    id: 'YR12Z8f1Dh8',
+    snippet: {
+      title: 'Why This Kolaveri Di',
+      description: 'The viral Tamil-English hit that took over playlists.',
+      channelId: 'channel-sony-music-india',
+      channelTitle: 'Sony Music India',
+      publishedAt: '2011-11-16T00:00:00Z',
+      thumbnails: makeThumbs('YR12Z8f1Dh8'),
+    },
+    contentDetails: { duration: 'PT4M08S' },
+    statistics: { viewCount: '360000000', likeCount: '4800000' },
+    tags: ['india', 'tamil', 'music', 'viral'],
+  },
+  {
+    id: 'yIIGQB6EMAM',
+    snippet: {
+      title: 'Zack Knight & Jasmin Walia - Bom Diggy',
+      description: 'An Indo-pop crossover that went global.',
+      channelId: 'channel-zack-knight',
+      channelTitle: 'Zack Knight',
+      publishedAt: '2017-11-23T00:00:00Z',
+      thumbnails: makeThumbs('yIIGQB6EMAM'),
+    },
+    contentDetails: { duration: 'PT3M27S' },
+    statistics: { viewCount: '780000000', likeCount: '5200000' },
+    tags: ['india', 'bollywood', 'music', 'dance', 'global'],
+  },
+  {
+    id: '5Eqb_-j3FDA',
+    snippet: {
+      title: 'Pasoori | Ali Sethi x Shae Gill (Coke Studio Season 14)',
+      description: 'Coke Studio fusion hit with global reach.',
+      channelId: 'channel-coke-studio',
+      channelTitle: 'Coke Studio',
+      publishedAt: '2022-02-06T00:00:00Z',
+      thumbnails: makeThumbs('5Eqb_-j3FDA'),
+    },
+    contentDetails: { duration: 'PT3M44S' },
+    statistics: { viewCount: '600000000', likeCount: '8200000' },
+    tags: ['global', 'south-asia', 'music', 'fusion'],
+  },
+  {
+    id: 'IHNzOHi8sJs',
+    snippet: {
+      title: 'BLACKPINK - DDU-DU DDU-DU (Official Music Video)',
+      description: 'Iconic K-pop anthem with bold visuals.',
+      channelId: 'channel-blackpink',
+      channelTitle: 'BLACKPINK',
+      publishedAt: '2018-06-15T00:00:00Z',
+      thumbnails: makeThumbs('IHNzOHi8sJs'),
+    },
+    contentDetails: { duration: 'PT3M31S' },
+    statistics: { viewCount: '2200000000', likeCount: '23000000' },
+    tags: ['global', 'kpop', 'music', 'pop'],
+  },
+  {
+    id: 'gdZLi9oWNZg',
+    snippet: {
+      title: 'BTS - Dynamite (Official Music Video)',
+      description: 'Bright retro-pop from BTS.',
+      channelId: 'channel-bts',
+      channelTitle: 'BTS',
+      publishedAt: '2020-08-21T00:00:00Z',
+      thumbnails: makeThumbs('gdZLi9oWNZg'),
+    },
+    contentDetails: { duration: 'PT3M19S' },
+    statistics: { viewCount: '1900000000', likeCount: '23000000' },
+    tags: ['global', 'kpop', 'music', 'pop'],
+  },
+  {
+    id: 'CQLsdm1ZYAw',
+    snippet: {
+      title: 'Rema - Calm Down (Official Music Video)',
+      description: 'Afrobeats crossover hit.',
+      channelId: 'channel-rema',
+      channelTitle: 'Rema',
+      publishedAt: '2022-09-07T00:00:00Z',
+      thumbnails: makeThumbs('CQLsdm1ZYAw'),
+    },
+    contentDetails: { duration: 'PT3M40S' },
+    statistics: { viewCount: '1200000000', likeCount: '6400000' },
+    tags: ['global', 'afrobeats', 'music'],
+  },
+  {
+    id: 'D-YDEyuDxWU',
+    snippet: {
+      title: 'CKay - love nwantiti (Ah Ah Ah) [Official Music Video]',
+      description: 'Afrobeats hit with a viral chorus.',
+      channelId: 'channel-ckay',
+      channelTitle: 'CKay',
+      publishedAt: '2021-08-20T00:00:00Z',
+      thumbnails: makeThumbs('D-YDEyuDxWU'),
+    },
+    contentDetails: { duration: 'PT3M08S' },
+    statistics: { viewCount: '420000000', likeCount: '5500000' },
+    tags: ['global', 'afrobeats', 'music'],
+  },
 ];
 
 export const commentsByVideoId = {
@@ -636,6 +884,110 @@ export const commentsByVideoId = {
           snippet: {
             authorDisplayName: 'Elena V.',
             textDisplay: 'Love leaving this stream on while working.',
+          },
+        },
+      },
+    },
+  ],
+  BddP6PYo2gs: [
+    {
+      id: 'kes-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Rhea S.',
+            textDisplay: 'This chorus still hits every time.',
+          },
+        },
+      },
+    },
+  ],
+  OsU0CGZoV8E: [
+    {
+      id: 'rrr-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Arjun P.',
+            textDisplay: 'Pure energy. The choreography is insane.',
+          },
+        },
+      },
+    },
+  ],
+  BBAyRBTfsOU: [
+    {
+      id: 'vaa-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Kavya N.',
+            textDisplay: 'One of my all-time favorites.',
+          },
+        },
+      },
+    },
+  ],
+  YR12Z8f1Dh8: [
+    {
+      id: 'kol-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Vishal R.',
+            textDisplay: 'Still catchy after a decade.',
+          },
+        },
+      },
+    },
+  ],
+  '5Eqb_-j3FDA': [
+    {
+      id: 'pas-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Ayesha K.',
+            textDisplay: 'The blend of styles is beautiful.',
+          },
+        },
+      },
+    },
+  ],
+  IHNzOHi8sJs: [
+    {
+      id: 'bp-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Minji L.',
+            textDisplay: 'That drop is iconic.',
+          },
+        },
+      },
+    },
+  ],
+  gdZLi9oWNZg: [
+    {
+      id: 'bts-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Sam K.',
+            textDisplay: 'Instant mood lift.',
+          },
+        },
+      },
+    },
+  ],
+  CQLsdm1ZYAw: [
+    {
+      id: 'calm-1',
+      snippet: {
+        topLevelComment: {
+          snippet: {
+            authorDisplayName: 'Tomi A.',
+            textDisplay: 'This groove is addictive.',
           },
         },
       },
