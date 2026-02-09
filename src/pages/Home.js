@@ -45,9 +45,9 @@ const Home = () => {
       <div className="page-header">
         <div>
           <h1>{category.label}</h1>
-          <p>Fresh picks powered by live YouTube data.</p>
+          <p>Fresh picks from a curated library of real videos.</p>
         </div>
-        <span className="stat-pill">Updated just now</span>
+        <span className="stat-pill">Curated library</span>
       </div>
       {status === 'loading' ? <Loader lines={6} /> : null}
       {status === 'error' ? <ErrorState message={error} /> : null}

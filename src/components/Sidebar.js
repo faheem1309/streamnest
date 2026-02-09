@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 import { categories } from '../data/categories';
-import { hasApiKey } from '../api/youtube';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -28,9 +27,8 @@ const Sidebar = () => {
       <div className="sidebar__panel">
         <div className="sidebar__title">Build</div>
         <div className="empty-state">
-          {hasApiKey()
-            ? 'You are pulling live YouTube data. Open any video to explore details, comments, and related content.'
-            : 'Add a YouTube Data API key in .env to unlock live videos, comments, and channels.'}
+          You are browsing a curated library of real videos. Open any video to explore details, comments, and
+          related picks.
         </div>
       </div>
     </aside>

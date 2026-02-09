@@ -1,105 +1,107 @@
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-const BASE_URL = 'https://www.googleapis.com/youtube/v3';
-const DEFAULT_REGION = process.env.REACT_APP_YOUTUBE_REGION || 'US';
+import { channelsById, commentsByVideoId, videos } from '../data/library';
 
-export const hasApiKey = () => Boolean(API_KEY);
+const STOPWORDS = new Set([
+  'the',
+  'a',
+  'an',
+  'and',
+  'or',
+  'of',
+  'to',
+  'for',
+  'with',
+  'official',
+  'video',
+  'videos',
+  'latest',
+  'highlights',
+  'stream',
+  'streams',
+]);
 
-const buildUrl = (path, params) => {
-  const url = new URL(`${BASE_URL}/${path}`);
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined && value !== null && value !== '') {
-      url.searchParams.set(key, value);
-    }
-  });
-  url.searchParams.set('key', API_KEY);
-  return url.toString();
+const toNumber = (value) => Number(value || 0);
+
+const tokenize = (value) =>
+  String(value || '')
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean)
+    .filter((token) => !STOPWORDS.has(token));
+
+const scoreVideo = (video, tokens) => {
+  if (tokens.length === 0) return 0;
+  const haystack = [
+    video.snippet?.title,
+    video.snippet?.description,
+    video.snippet?.channelTitle,
+    ...(video.tags || []),
+  ]
+    .join(' ')
+    .toLowerCase();
+  return tokens.reduce((score, token) => (haystack.includes(token) ? score + 1 : score), 0);
 };
 
-const request = async (path, params) => {
-  if (!API_KEY) {
-    throw new Error('Missing REACT_APP_YOUTUBE_API_KEY. Add it to a .env file and restart the dev server.');
-  }
+const sortByViews = (items) =>
+  [...items].sort(
+    (a, b) => toNumber(b.statistics?.viewCount) - toNumber(a.statistics?.viewCount),
+  );
 
-  const response = await fetch(buildUrl(path, params));
-  const data = await response.json();
-
-  if (!response.ok) {
-    const message = data?.error?.message || 'Unable to load YouTube data.';
-    throw new Error(message);
-  }
-
-  return data;
-};
-
-export const fetchMostPopular = async ({ maxResults = 24, regionCode = DEFAULT_REGION } = {}) => {
-  const data = await request('videos', {
-    part: 'snippet,contentDetails,statistics',
-    chart: 'mostPopular',
-    maxResults,
-    regionCode,
-  });
-  return data.items || [];
-};
+export const fetchMostPopular = async ({ maxResults = 24 } = {}) =>
+  sortByViews(videos).slice(0, maxResults);
 
 export const searchVideos = async ({ query, maxResults = 24 } = {}) => {
-  const data = await request('search', {
-    part: 'snippet',
-    type: 'video',
-    maxResults,
-    q: query,
-  });
-  return data.items || [];
+  if (!query) {
+    return sortByViews(videos).slice(0, maxResults);
+  }
+  const tokens = tokenize(query);
+  if (tokens.length === 0) {
+    return sortByViews(videos).slice(0, maxResults);
+  }
+
+  return sortByViews(
+    videos
+      .map((video) => ({ video, score: scoreVideo(video, tokens) }))
+      .filter((entry) => entry.score > 0)
+      .map((entry) => entry.video),
+  ).slice(0, maxResults);
 };
 
-export const fetchVideoById = async (videoId) => {
-  const data = await request('videos', {
-    part: 'snippet,contentDetails,statistics',
-    id: videoId,
-  });
-  return data.items?.[0];
-};
+export const fetchVideoById = async (videoId) => videos.find((video) => video.id === videoId);
 
 export const fetchRelatedVideos = async (videoId, maxResults = 18) => {
-  const data = await request('search', {
-    part: 'snippet',
-    type: 'video',
-    maxResults,
-    relatedToVideoId: videoId,
-  });
-  return data.items || [];
+  const current = videos.find((video) => video.id === videoId);
+  if (!current) return [];
+
+  const currentTags = new Set(current.tags || []);
+  const related = videos
+    .filter((video) => video.id !== videoId)
+    .map((video) => {
+      let score = 0;
+      if (video.snippet?.channelId === current.snippet?.channelId) {
+        score += 3;
+      }
+      (video.tags || []).forEach((tag) => {
+        if (currentTags.has(tag)) score += 1;
+      });
+      return { video, score };
+    })
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return toNumber(b.video.statistics?.viewCount) - toNumber(a.video.statistics?.viewCount);
+    })
+    .slice(0, maxResults)
+    .map((entry) => entry.video);
+
+  return related;
 };
 
-export const fetchChannel = async (channelId) => {
-  const data = await request('channels', {
-    part: 'snippet,statistics',
-    id: channelId,
-  });
-  return data.items?.[0];
-};
+export const fetchChannel = async (channelId) => channelsById[channelId];
 
-export const fetchChannelVideos = async (channelId, maxResults = 24) => {
-  const data = await request('search', {
-    part: 'snippet',
-    type: 'video',
-    maxResults,
-    channelId,
-    order: 'date',
-  });
-  return data.items || [];
-};
+export const fetchChannelVideos = async (channelId, maxResults = 24) =>
+  videos
+    .filter((video) => video.snippet?.channelId === channelId)
+    .sort((a, b) => new Date(b.snippet?.publishedAt) - new Date(a.snippet?.publishedAt))
+    .slice(0, maxResults);
 
-export const fetchComments = async (videoId, maxResults = 12) => {
-  try {
-    const data = await request('commentThreads', {
-      part: 'snippet',
-      videoId,
-      maxResults,
-    });
-    return data.items || [];
-  } catch (error) {
-    if (String(error.message).toLowerCase().includes('comments')) {
-      return [];
-    }
-    throw error;
-  }
-};
+export const fetchComments = async (videoId, maxResults = 12) =>
+  (commentsByVideoId[videoId] || []).slice(0, maxResults);

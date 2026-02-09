@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { hasApiKey } from '../api/youtube';
 
 const TopBar = () => {
   const navigate = useNavigate();
@@ -37,9 +36,7 @@ const TopBar = () => {
         <button type="submit">Search</button>
       </form>
       <div className="topbar__actions">
-        <span className={`chip ${hasApiKey() ? 'chip--accent' : ''}`}>
-          {hasApiKey() ? 'Live API' : 'API Key Needed'}
-        </span>
+        <span className="chip chip--accent">Curated Library</span>
         <span className="chip">Create</span>
       </div>
     </header>

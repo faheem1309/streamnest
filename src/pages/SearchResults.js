@@ -48,9 +48,9 @@ const SearchResults = () => {
           <h1>Search</h1>
           <p>{query ? `Results for "${query}"` : 'Type a query to explore.'}</p>
         </div>
-        {query ? <span className="stat-pill">Live results</span> : null}
+        {query ? <span className="stat-pill">Curated results</span> : null}
       </div>
-      {status === 'idle' ? <EmptyState message="Start a search to see real content." /> : null}
+      {status === 'idle' ? <EmptyState message="Start a search to explore the curated library." /> : null}
       {status === 'loading' ? <Loader lines={6} /> : null}
       {status === 'error' ? <ErrorState message={error} /> : null}
       {status === 'ready' && items.length === 0 ? (
