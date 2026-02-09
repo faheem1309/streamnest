@@ -7,10 +7,13 @@ import SearchResults from './pages/SearchResults';
 import Watch from './pages/Watch';
 import Channel from './pages/Channel';
 import NotFound from './pages/NotFound';
+import NowPlayingBar from './components/NowPlayingBar';
+import { NowPlayingProvider, useNowPlaying } from './utils/nowPlaying';
 
-function App() {
+const AppLayout = () => {
+  const { nowPlaying } = useNowPlaying();
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${nowPlaying ? 'app-shell--with-player' : ''}`}>
       <TopBar />
       <div className="app-body">
         <Sidebar />
@@ -25,7 +28,16 @@ function App() {
           </Routes>
         </main>
       </div>
+      <NowPlayingBar />
     </div>
+  );
+};
+
+function App() {
+  return (
+    <NowPlayingProvider>
+      <AppLayout />
+    </NowPlayingProvider>
   );
 }
 

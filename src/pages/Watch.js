@@ -4,6 +4,7 @@ import { fetchComments, fetchRelatedVideos, fetchVideoById } from '../api/youtub
 import VideoGrid from '../components/VideoGrid';
 import { EmptyState, ErrorState, Loader } from '../components/StateBlocks';
 import { formatNumber, formatRelativeTime } from '../utils/format';
+import { useNowPlaying } from '../utils/nowPlaying';
 
 const Watch = () => {
   const { videoId } = useParams();
@@ -12,6 +13,7 @@ const Watch = () => {
   const [comments, setComments] = useState([]);
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState('');
+  const { setNowPlaying } = useNowPlaying();
 
   useEffect(() => {
     let active = true;
@@ -42,6 +44,12 @@ const Watch = () => {
       active = false;
     };
   }, [videoId]);
+
+  useEffect(() => {
+    if (video) {
+      setNowPlaying(video);
+    }
+  }, [video, setNowPlaying]);
 
   if (status === 'loading') {
     return <Loader lines={6} />;
