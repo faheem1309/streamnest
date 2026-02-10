@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { categories } from '../data/categories';
 import { fetchMostPopular, searchVideos } from '../api/youtube';
@@ -8,13 +8,21 @@ import { EmptyState, ErrorState, Loader } from '../components/StateBlocks';
 const Home = () => {
   const [params] = useSearchParams();
   const categoryId = params.get('category');
-  const selectedCategory = categoryId
-    ? categories.find((item) => item.id === categoryId) || categories[0]
-    : null;
+
+  const selectedCategory = useMemo(() => {
+    return categoryId
+      ? categories.find((item) => item.id === categoryId) || categories[0]
+      : null;
+  }, [categoryId]);
+
+  const homeSections = useMemo(() => {
+    return ['trending', 'india', 'global', 'kids', 'islamic']
+      .map((id) => categories.find((item) => item.id === id))
+      .filter(Boolean);
+  }, []);
+
   const categoryQuery = selectedCategory?.query;
-  const homeSections = ['trending', 'india', 'global', 'kids', 'islamic']
-    .map((id) => categories.find((item) => item.id === id))
-    .filter(Boolean);
+
   const [items, setItems] = useState([]);
   const [sections, setSections] = useState({});
   const [status, setStatus] = useState('loading');
@@ -22,47 +30,55 @@ const Home = () => {
 
   useEffect(() => {
     let active = true;
+
     const load = async () => {
       setStatus('loading');
       setError('');
+
       try {
         if (selectedCategory) {
           const data = categoryQuery
             ? await searchVideos({ query: categoryQuery })
             : await fetchMostPopular();
-          if (active) {
-            setItems(data);
-            setSections({});
-            setStatus('ready');
-          }
+
+          if (!active) return;
+
+          setItems(data);
+          setSections({});
+          setStatus('ready');
         } else {
           const results = await Promise.all(
             homeSections.map((section) =>
-              section.query ? searchVideos({ query: section.query }) : fetchMostPopular(),
+              section.query
+                ? searchVideos({ query: section.query })
+                : fetchMostPopular(),
             ),
           );
-          if (active) {
-            const nextSections = homeSections.reduce((acc, section, index) => {
-              acc[section.id] = results[index] || [];
-              return acc;
-            }, {});
-            setSections(nextSections);
-            setItems([]);
-            setStatus('ready');
-          }
+
+          if (!active) return;
+
+          const nextSections = homeSections.reduce((acc, section, index) => {
+            acc[section.id] = results[index] || [];
+            return acc;
+          }, {});
+
+          setSections(nextSections);
+          setItems([]);
+          setStatus('ready');
         }
       } catch (err) {
-        if (active) {
-          setError(err.message || 'Something went wrong.');
-          setStatus('error');
-        }
+        if (!active) return;
+        setError(err.message || 'Something went wrong.');
+        setStatus('error');
       }
     };
+
     load();
+
     return () => {
       active = false;
     };
-  }, [categoryId]);
+  }, [selectedCategory, categoryQuery, homeSections]);
 
   if (selectedCategory) {
     return (
@@ -74,12 +90,13 @@ const Home = () => {
           </div>
           <span className="stat-pill">Curated library</span>
         </div>
-        {status === 'loading' ? <Loader lines={6} /> : null}
-        {status === 'error' ? <ErrorState message={error} /> : null}
-        {status === 'ready' && items.length === 0 ? (
+
+        {status === 'loading' && <Loader lines={6} />}
+        {status === 'error' && <ErrorState message={error} />}
+        {status === 'ready' && items.length === 0 && (
           <EmptyState message="No videos found yet. Try another category." />
-        ) : null}
-        {status === 'ready' && items.length > 0 ? <VideoGrid items={items} /> : null}
+        )}
+        {status === 'ready' && items.length > 0 && <VideoGrid items={items} />}
       </section>
     );
   }
@@ -93,29 +110,35 @@ const Home = () => {
         </div>
         <span className="stat-pill">Curated library</span>
       </div>
-      {status === 'loading' ? <Loader lines={8} /> : null}
-      {status === 'error' ? <ErrorState message={error} /> : null}
-      {status === 'ready'
-        ? homeSections.map((section) => {
-            const sectionItems = sections[section.id] || [];
-            return (
-              <div key={section.id} className="home-section">
-                <div className="section-header">
-                  <div>
-                    <h2>{section.label}</h2>
-                    <p>{section.query ? `Curated picks for ${section.label}.` : 'Most popular right now.'}</p>
-                  </div>
-                  <span className="stat-pill">{sectionItems.length} videos</span>
+
+      {status === 'loading' && <Loader lines={8} />}
+      {status === 'error' && <ErrorState message={error} />}
+
+      {status === 'ready' &&
+        homeSections.map((section) => {
+          const sectionItems = sections[section.id] || [];
+          return (
+            <div key={section.id} className="home-section">
+              <div className="section-header">
+                <div>
+                  <h2>{section.label}</h2>
+                  <p>
+                    {section.query
+                      ? `Curated picks for ${section.label}.`
+                      : 'Most popular right now.'}
+                  </p>
                 </div>
-                {sectionItems.length === 0 ? (
-                  <EmptyState message={`No videos yet for ${section.label}.`} />
-                ) : (
-                  <VideoGrid items={sectionItems} />
-                )}
+                <span className="stat-pill">{sectionItems.length} videos</span>
               </div>
-            );
-          })
-        : null}
+
+              {sectionItems.length === 0 ? (
+                <EmptyState message={`No videos yet for ${section.label}.`} />
+              ) : (
+                <VideoGrid items={sectionItems} />
+              )}
+            </div>
+          );
+        })}
     </section>
   );
 };
