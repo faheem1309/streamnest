@@ -1,6 +1,4 @@
-# StreamNest
-
-StreamNest is a clean, curated video discovery web app built with React.  
-It focuses on distraction-free browsing, fast search, and smooth playback.  
-The project showcases modern UI, smart content organization, and frontend engineering.  
-Designed as a scalable prototype for future streaming or learning platforms.
+# StreamNest  
+StreamNest is a curated, distraction-free video discovery web app with fast search and clean playback.  
+Built using React, React Router, JavaScript, HTML, and CSS for a modern frontend experience.  
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="32"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="32"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="32"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="32"/>
