@@ -186,6 +186,7 @@ const TopBar = () => {
         ref={searchRef}
         role="combobox"
         aria-expanded={isOpen}
+        aria-controls="search-suggest-list"
         aria-haspopup="listbox"
       >
         <form className="topbar__search" onSubmit={handleSubmit}>
@@ -206,7 +207,7 @@ const TopBar = () => {
         </form>
 
         {isOpen && trimmedTerm && (
-          <div className="search-suggest" role="listbox">
+          <div className="search-suggest" role="listbox" id="search-suggest-list">
             <div className="search-suggest__list">
               <div className="search-suggest__header">Top matches</div>
 
